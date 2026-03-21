@@ -1,0 +1,103 @@
+mkdir /etc/exports.d/shares
+
+sudo pacman -S nfs-utils
+
+sudo vim /etc/exports
+
+/path/to/share *(rw,sync)
+
+sudo exportfs -arv
+
+5. Chmod on server side :
+
+Change the shared directory access permissions :
+
+sudo chmod <mod-exmple-777> /etc/exports.d/shares
+
+sudo systemctl enable --now nfs-server
+
+sudo firewall-cmd --add-service=nfs --permanent
+sudo firewall-cmd --add-service=mountd --permanent
+sudo firewall-cmd --add-service=rpc-bind --permanent
+
+sudo firewall-cmd --reloads
+
+other machine
+
+sudo pacman -S nfs-utils
+
+mkdir ~/mountpoint
+
+sudo mount -t nfs <servername or ip>:/path/to/share ~/mountpoint
+
+
+
+Verify that the shared directory is mounted correctly:
+
+df -h ~/mountpoint
+
+**************************************************************************
+WSL windows 
+ubuntu
+*****************************************************************************
+apt install nfs-common
+
+mount -t nfs folder_server /localfolder
+
+apt install nfs-kernel-server rpcbind
+
+mkdir nfsshare
+
+chown nobody:nogroup /nfsshare
+
+chmod 777 nfsshare
+
+sudo sh -c "echo '/nfsshare *(rw,sync,no_subtree_check,insecure)' >> /etc/exports"
+
+should be in etc/exports
+/nfsshare *(rw,sync,no_subtree_check,insecure)
+
+start service
+
+sudo service rpcbind start
+
+sudo service nfs-kernel-server start
+
+export 
+
+sudo exportfs -a
+
+ip a s
+
+open the map to port to wsl on windows
+
+open powershell
+
+netsh interface portproxy add v4tov4 listenport=443 listenaddress=0.0.0.0 connectport=443 connectaddress=wsl_ip
+
+netsh interface portproxy add v4tov4 listenport=2049 listenaddress=0.0.0.0 connectport=2049 connectaddress=wsl_ip
+
+netsh interface portproxy show v4tov4
+
+firewall 
+inbound port 
+
+443,2049
+
+
+
+************************************************************
+Locate your folder: Your C: drive is at /mnt/c/.
+Access your folder: If your folder is C:\Users\Name\Projects, in WSL it is /mnt/c/Users/Name/Projects.
+Mount a specific folder with custom permissions:
+If you need specific permissions (e.g., as root), you can remount it:
+
+bash
+
+sudo mkdir -p /mnt/c
+sudo mount -t drvfs C: /mnt/c -o rw,uid=1000,gid=1000
+
+
+**************************************************************
+
+
