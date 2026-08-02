@@ -1,0 +1,51 @@
+
+#Wifi in ISO Arch linux
+
+ $) iwctl
+ $) device list (eg wlan0)
+ 
+ $) station wlan0 scan
+ 
+ 4) station wlan0 get-networks
+ 
+ 5) station wlan0 connect <SSID>
+   $) exit 
+   test 
+   $) ping 1.1.1.1
+   
+ 
+ #connect installed System with Network manager
+ 
+ $) nmtui 
+ 
+ # select Activate a connect
+ choose your wifi and the list enter the password.
+ 
+ #select BACK and QUIT
+ 
+ #why tty does not work
+ Start a new TTY manually: 
+ Run "sudo systemctl start getty@tty4" 
+ from tty1 to launch tty4 right now.
+ some new keyboard using Fn 
+ # Test via command line: Type "chvt 4 in tty1" and press Enter to 
+ see if the system forces a jump to tty4, 
+ 
+ which helps test if the shortcut keys are the problem
+ 
+  #tty with Nvidia driver
+  
+  had the same problem once, all TTYs except for the one where SDDM loaded went missing. 
+  I fixed it by adding "nomodeset" to my kernel parameters.
+
+I'm pretty sure it was something to do with my Nvidia GPU so if you use AMD or Intel graphics, this may not work for you.
+
+To add "nomodeset" temporarily, press e at the GRUB boot menu, append nomodeset to the line starting with linux, 
+and press Ctrl+X or F10 to boot. To make it permanent, edit /etc/default/grub, update GRUB, and reboot
+
+Open your terminal once the system is running.Type 
+sudo nano /etc/default/grub and press Enter.
+Find the line that says GRUB_CMDLINE_LINUX_DEFAULT or GRUB_CMDLINE_LINUX.Add nomodeset
+ inside the quotation marks on that line (next to text like quiet splash).
+ Save the file by pressing Ctrl+O, 
+hit Enter, then exit using Ctrl+X.
