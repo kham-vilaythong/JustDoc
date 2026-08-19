@@ -1,0 +1,4 @@
+# Install calulator
+yay -S omarchy-calculator-git
+
+yay -S numr
