@@ -1,0 +1,17 @@
+# Static information about the filesystems.
+# See fstab(5) for details.
+
+# <file system> <dir> <type> <options> <dump> <pass>
+# /dev/nvme1n1p2
+UUID=59b948a9-a7d5-44df-a6b0-79a1aa7470e7	/         	ext4      	rw,relatime	0 1
+
+# /dev/nvme1n1p1
+UUID=8F65-9C58      	/boot     	vfat   	rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+# //192.168.1.106/ /mnt/share cifs 0 0
+
+UUID=D0C60A11C609F88C /mnt/c-drive ntfs-3g defaults,uid=1000,gid=1000,dmask=022,fmask=133,file_mode=0777,dir_mode=0777,nofail 0 0
+# Black_drive
+UUID=2A12FB1312FAE2AD /mnt/black_drive ntfs-3g defaults,nofail,umark=000, 0 0
+# Green_drive
+UUID=768EFCA58EFC5ED5 /mnt/green_drive ntfs-3g defaults,nofail,umark=000, 0 0
+

@@ -1,0 +1,125 @@
+
+# create folder to share user1 and user2
+sudo groundadd sharegroup
+sudo usermod -aG sharegroup user1
+sudo usermod -aG sharegroup user2
+
+# create folder for share
+sudo mkdir -p /srv/shared_folder
+# change ownership and permission
+sudo chown :sharegroup /srv/shared_folder
+#set permission or 2777 for publish
+sudo chmod 2770 /srv/shared_folder
+
+
+# install SDDM themes 
+sudo cp -r /path/to/extracted/theme-folder /usr/share/sddm/themes/
+
+sudo nano /etc/sddm.conf.d/theme.conf
+
+[Theme]
+Current=your-theme-name
+
+The test API
+sudo sddm-greeter-qt6 --test-mode --theme /usr/share/sddm/themes/your-theme-name
+
+sudo sysstemctl restart sddm
+
+
+# edit file name
+# docker install 
+# 1. Update your system and install Docker along with its modern plugins
+sudo pacman -Syu docker docker-buildx docker-compose
+
+# 2. Start and enable the Docker service to run automatically on boot
+sudo systemctl enable --now docker.service
+
+# 3. Add your current user to the docker group to run commands without sudo
+sudo usermod -aG docker $USER
+
+#download libreoffice
+sudo pacman -S libreoffice-fresh
+
+#video download tool
+sudo pacman -S yt-dlp
+
+to install
+#Flutter SDK get manually install zip file
+# install in folder /opt/develop/flutter
+# add in export 
+export PATH=/opt/develop/flutter/bin:$PATH
+
+# after run flutter --version and dart --version . flow this method install in flutter dev website
+
+# set android-SDK
+
+export ANDROID_HOME=/opt/develop/android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+
+emulator
+
+# Setup the path
+
+# Install the emulator engine
+sdkmanager "emulator"
+
+# Download a system image (e.g., Android 16 API 34 with Google APIs)
+sdkmanager "system-images;android-36;google_apis;x86_64"
+
+
+
+# Create an AVD named "MyNexus" using a Nexus 5X skin
+# list the of devices avail to create
+sdkmanager --list | grep system-images
+
+
+avdmanager create avd -n Pixel9 -k "system-images;android-36;google_apis;x86_64"
+
+#verify the creation
+
+avdmanager list avd
+
+#Boot the Emulator
+
+# Start the emulator
+emulator -avd MyNexus
+
+# OPTIONAL: Start the emulator headlessly (no GUI, ideal for SSH/CI-CD)
+emulator -avd MyNexus -no-window -no-audio
+
+
+Ensure your system detects the emulator:
+
+adb devices
+
+
+install and app APK file onto the virtual device
+
+adb install path/to/app.apk
+
+open a Terminal Shell
+
+adb shell
+
+Transfer Files: Move files between your computer and the emulator.
+
+# Copy from PC to Emulator
+adb push local_file.txt /sdcard/
+
+# Copy from Emulator to PC
+adb pull /sdcard/remote_file.txt ./
+
+View Device Logs: Monitor system logs in real-time.
+
+
+adb logcat
+
+Restart the Server: Fix connection issues if the emulator is not found.
+
+adb kill-server && adb start-server
+
+# Wall paper 
+# https://naive.my.id/wallpapers/
