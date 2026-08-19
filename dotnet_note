@@ -1,0 +1,22 @@
+# remove the .NET package
+sudo pacman -R dotnet aspnet* netstandard*
+
+# 2 additional source
+aspnet-runtime
+dotnet-runtime
+dotnet-sdk
+dotnet
+
+dotnet-sdk-10.0
+aspnetcore-runtime-10.0
+dotnet-runtime-10.0
+
+ zlib1g
+ 
+
+ dotnet
+ aspnetcore
+
+# here for archlinux
+sudo pacman -Syu dotnet-sdk aspnet-runtime
+
