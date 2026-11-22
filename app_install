@@ -1,4 +1,21 @@
-# Install calulator
-yay -S omarchy-calculator-git
+calucate with variable set etc
 
 yay -S numr
+
+#https://dark-kernel.github.io/tuisic/#install
+yay -S tuisic-git
+
+//using gnome calulator or kcal (kde calulator)
+//calendar  using flutter
+https://github.com/snes19xx/EverCal
+evercal
+
+this lock screen
+https://github.com/mahaveergurjar/sddm/tree/pixel
+
+//code visual code 
+	
+Everforest Pro
+
+https://github.com/ManofJELLO/HyprWindowShade 
+https://github.com/jbuck95/Hyprland-Shader
