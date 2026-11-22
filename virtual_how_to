@@ -1,0 +1,95 @@
+# the site for hyprland cool to try
+https://github.com/Blapples/SekaiPop
+# easy to setup
+# https://github.com/LUCKYS1NGHH/ChillPill-Shell/tree/main
+#
+# 2 https://github.com/na-ive/nandoroid-shel
+
+# check this information linux setup too and hypr
+#
+# https://github.com/LUCKYS1NGHH
+https://github.com/snes19xx/surface-dots/tree/main
+https://p3drovfx.github.io/ii-p3drovfx-website/#top
+#
+#
+# wall paper 
+# https://hdqwalls.com/
+# this is good youtube for hyprland install and configureation
+# https://www.youtube.com/watch?v=PEgDssV0nW0
+#
+#
+# try qemu image
+# first create hard disk 
+#Open your terminal and run the command to create a 20GB disk named disk.qcow2:
+
+qemu-img create -f qcow2 disk.qcow2 20G
+
+qemu-system-x86_64 -m 4G -smp 4 -enable-kvm -hda disk.qcow2 -cdrom /path/to/client-os.iso -boot d
+
+qemu-system-x86_64 -m 10G -smp 4 -enable-kvm -hda omarch4.qcow2 -cdrom omarchy-4.0.0.iso -boot d
+
+
+Start your installed system:
+qemu-system-x86_64 -m 4G -smp 4 -enable-kvm -hda disk.qcow2
+
+
+Arch Linux
+sudo pacman -Syu
+
+Install QEMU, KVM, libvirt, virt-manager and related tools
+sudo pacman -S qemu-full libvirt virt-manager virt-install virt-viewer dnsmasq bridge-utils edk2-ovmf
+
+Enable and start the libvirt service
+sudo systemctl enable --now libvirtd
+
+Add your user to the libvirt group
+sudo usermod -aG libvirt $(whoami)
+
+(Optional) Add your user to the kvm group
+sudo usermod -aG kvm $(whoami)
+
+Verify virtualization support
+sudo virt-host-validate
+
+Launch Virtual Machine Manager
+virt-manager
+
+share folder in qemu to host
+
+qemu-system-x86_64 \
+  -enable-kvm \
+  -m 4G \
+  -smp 4 \
+  -drive arch.qcow2 \
+  -fsdev local,id=shared_folder_id,path=/path/to/host/folder,security_model=mapped-xattr \
+  -device virtio-9p-pci,fsdev=shared_folder_id,mount_tag=host_share
+
+
+
+
+path=/path/to/host/folder: 
+The absolute path to the folder on your host machine that you want to 
+share.id=shared_folder_id: An internal identifier QEMU uses to connect the device
+to the backend file system 
+storage.mount_tag=host_share: 
+The text "label" the guest system will look for when mounting the folder. 
+You can name this whatever you like.security_model=mapped-xattr: 
+Ensures file permissions (UID/GID) are preserved properly between host and guest.
+
+add ssh key how to 
+
+Update your system
+
+$) ssh-keygen -t ed25519 -C "outside-access"
+
+then copy public key to that ip pc
+
+$) ssh-copy-id -i ~/.ssh/id_ed25519.pub username@local_linux_ip
+
+in that target must install openssh and run as service first.
+
+then 
+
+$) ssh username@192.168.1.878
+
+
