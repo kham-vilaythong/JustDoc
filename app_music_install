@@ -1,0 +1,39 @@
+1) sudo pacman -S mpd mpc mpd-mpris
+
+2) Create ~/.config/mpd/mpd.conf:
+
+in the file 
+
+music_directory    "~/Music"
+playlist_directory "~/.config/mpd/playlists"
+db_file            "~/.config/mpd/database"
+log_file           "~/.config/mpd/log"
+pid_file           "~/.config/mpd/pid"
+state_file         "~/.config/mpd/state"
+
+audio_output {
+    type "pipewire"
+    name "PipeWire Sound Server"
+}
+
+3) create the playlists folder and enable the services
+
+bash
+mkdir -p ~/.config/mpd/playlists
+systemctl --user enable --now mpd mpd-mpris
+
+4) load and play your Music
+
+bash
+mpc update
+mpc listall | mpc add
+mpc play
+
+
+option 2
+
+amberol 
+
+sudo pacman -S amberol
+
+Strawberry or Audacious (sudo pacman -S strawberry / audacious) — Full-featured local library players with native MPRIS.
